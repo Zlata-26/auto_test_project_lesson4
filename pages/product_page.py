@@ -38,3 +38,15 @@ class ProductPage(BasePage):
         book_price = self.browser.find_element(*ProductPageLocators.BOOK_PRICE)
         price_message = self.browser.find_element(*ProductPageLocators.PRICE_MESSAGE)
         assert book_price.text == price_message.text, "Price message is not correct" 
+
+    def should_not_be_success_message(self):
+
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented, but should not be"
+
+    
+
+
+
+
+
