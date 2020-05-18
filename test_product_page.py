@@ -1,4 +1,5 @@
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 import pytest
 from selenium.webdriver.common.by import By
 
@@ -55,5 +56,15 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    basket_page = BasketPage(browser, link)
+    basket_page.open() 
+    basket_page.go_to_basket_page()
+    basket_page.is_not_element_present(By.CSS_SELECTOR, "#basket_formset")
+    basket_page.should_be_empty_basket()
+    basket_page.should_be_empty_basket_message()
 
 
