@@ -21,3 +21,13 @@ class LoginPage(BasePage):
         # реализуйте проверку, что есть форма регистрации на странице
         assert self.browser.find_element(*LoginPageLocators.REGISTER_FORM), "Register form is not presented"
     
+    def register_new_user(self, email, password):
+
+        email_address = self.browser.find_element(*LoginPageLocators.EMAIL_ADDRESS)
+        email_address.send_keys(email)
+        password_field = self.browser.find_element(*LoginPageLocators.PASSWORD)
+        password_field.send_keys(password)
+        confirm_password = self.browser.find_element(*LoginPageLocators.CONFIRM_PASSWORD)
+        confirm_password.send_keys(password)
+        button_register = self.browser.find_element(*LoginPageLocators.BUTTON_REGISTER)
+        button_register.click()
